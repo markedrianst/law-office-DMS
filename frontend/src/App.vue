@@ -1,6 +1,16 @@
+<script setup>
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import MainLayout from "@/layouts/Layout.vue";
+
+const route = useRoute();
+
+// Use layout for all pages except Login
+const useLayout = computed(() => route.path !== "/");
+</script>
 
 <template>
-<h1 class="text-4xl font-bold text-blue-600">
-  Tailwind Vue Ready 🚀
-</h1>
+  <MainLayout v-if="useLayout" />
+  <router-view v-else />
 </template>
+
