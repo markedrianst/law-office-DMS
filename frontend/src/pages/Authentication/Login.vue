@@ -70,7 +70,7 @@ export default {
 
         // Redirect based on role
         const role = response.data.user.role;
-        if (role === "admin") this.$router.push("/admindashboard");
+        if (role === "admin") this.$router.push("/admin/admindashboard");
         if (role === "staff") this.$router.push("/staffdashboard");
         if (role === "lawyer") this.$router.push("/lawyerdashboard");
 

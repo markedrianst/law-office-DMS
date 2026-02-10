@@ -25,9 +25,9 @@ const routes = [
   { path: "/", component: Login },
   { path: "/register", component: Register },
 //admin routes  
-  { path: "/manageusers", component: ManageUser, meta: { requiresAuth: true, role: "admin" } },
-  { path: "/admindashboard", component: AdminDashboard, meta: { requiresAuth: true, role: "admin" } },
-  { path: "/activitylogs", component: ActivityLogs, meta: { requiresAuth: true, role: "admin" } },
+  { path: "/admin/manageusers", component: ManageUser, meta: { requiresAuth: true, role: "admin" } },
+  { path: "/admin/admindashboard", component: AdminDashboard, meta: { requiresAuth: true, role: "admin" } },
+  { path: "/admin/activitylogs", component: ActivityLogs, meta: { requiresAuth: true, role: "admin" } },
   
   //staff routes
   { path: "/staffdashboard", component: StaffDashboard, meta: { requiresAuth: true, role: "staff" } },
@@ -66,7 +66,7 @@ router.beforeEach((to, from, next) => {
   }
 
   if ((to.path === "/" || to.path === "/register") && token) {
-    if (user.role === "admin") return next("/admindashboard");
+    if (user.role === "admin") return next("/admin/admindashboard");
     if (user.role === "staff") return next("/staffdashboard");
     if (user.role === "lawyer") return next("/lawyerdashboard");
   }

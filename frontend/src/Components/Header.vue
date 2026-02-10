@@ -66,9 +66,9 @@ const role = computed(() => user.value.role || "guest");
 const navItems = computed(() => {
   if (role.value === "admin") {
     return [
-      { name: "Dashboard", to: "/admindashboard", icon: Squares2X2Icon },
-      { name: "Users", to: "/manageusers", icon: UsersIcon },
-      { name: "Activity Logs", to: "/activitylogs", icon: ClipboardDocumentListIcon },
+      { name: "Dashboard", to: "/admin/admindashboard", icon: Squares2X2Icon },
+      { name: "Users", to: "/admin/manageusers", icon: UsersIcon },
+      { name: "Activity Logs", to: "/admin/activitylogs", icon: ClipboardDocumentListIcon },
       { name: "Documents", to: "/documents", icon: DocumentTextIcon },
       { name: "Schedules", to: "/schedules", icon: ClockIcon },
       { name: "Notifications", to: "/notifications", icon: BellIcon },
