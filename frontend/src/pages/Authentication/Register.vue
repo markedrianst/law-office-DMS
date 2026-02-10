@@ -2,7 +2,9 @@
   import { ref } from "vue";
   import api from "@/services/api";
 
-  const name = ref("");
+  const first_name = ref("");
+  const last_name = ref("");
+  const middle_name = ref("");
   const email = ref("");
   const password = ref("");
   const role = ref("staff"); // default role
@@ -17,7 +19,9 @@
 
     try {
       const res = await api.post("/register", {
-        name: name.value,
+        first_name: first_name.value,
+        last_name: last_name.value,
+        middle_name: middle_name.value,
         email: email.value,
         password: password.value,
         role: role.value, // send role to backend
@@ -39,8 +43,15 @@
         <h2 class="text-2xl font-bold text-center mb-6">Create Account</h2>
 
         <form @submit.prevent="register" class="space-y-4">
-          <input v-model="name" type="text" placeholder="Name"
+          <!-- First Name -->
+          <input v-model="first_name" type="text" placeholder="First Name"
             class="w-full border p-3 rounded-lg" />
+
+          <input v-model="last_name" type="text" placeholder="Last Name"
+            class="w-full border p-3 rounded-lg" />
+
+          <input v-model="middle_name" type="text" placeholder="Middle Name (optional)"
+            class="w-full border p-3 rounded-lg" />   
 
           <input v-model="email" type="email" placeholder="Email"
             class="w-full border p-3 rounded-lg" />

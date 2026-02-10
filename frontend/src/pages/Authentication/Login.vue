@@ -78,7 +78,7 @@ export default {
         Swal.fire({
           icon: "success",
           title: "Login Successful",
-          text: `Welcome back, ${response.data.user.name}!`,
+          text: `Welcome back, ${response.data.user.first_name} ${response.data.user.last_name}!`,
           timer: 1500,
           showConfirmButton: false,
         });
