@@ -15,7 +15,9 @@ import Settings from "@/pages/Staff/Setting.vue";
 import AdminDashboard from "@/pages/Admin/Admindashboard.vue";
 import ManageUser from "@/pages/Admin/ManageUser.vue";
 import ActivityLogs from "@/pages/Admin/ActivityLogs.vue";
-
+import Schedule from "@/pages/Admin/Schedule.vue";
+import Documents from "@/pages/Admin/Documents.vue";
+import Notification from "@/pages/Admin/Notification.vue";
 
 
 import NotFound from "@/Error/NotFound.vue";
@@ -28,6 +30,9 @@ const routes = [
   { path: "/admin/manageusers", component: ManageUser, meta: { requiresAuth: true, role: "admin" } },
   { path: "/admin/admindashboard", component: AdminDashboard, meta: { requiresAuth: true, role: "admin" } },
   { path: "/admin/activitylogs", component: ActivityLogs, meta: { requiresAuth: true, role: "admin" } },
+  { path: "/admin/schedules", component: Schedule, meta: { requiresAuth: true, role: "admin" } },
+  { path: "/admin/documents", component: Documents, meta: { requiresAuth: true, role: "admin" } },
+  { path: "/admin/notifications", component: Notification, meta: { requiresAuth: true, role: "admin" } }, 
   
   //staff routes
   { path: "/staffdashboard", component: StaffDashboard, meta: { requiresAuth: true, role: "staff" } },
