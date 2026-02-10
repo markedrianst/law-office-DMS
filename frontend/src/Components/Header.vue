@@ -69,10 +69,10 @@ const navItems = computed(() => {
       { name: "Dashboard", to: "/admin/admindashboard", icon: Squares2X2Icon },
       { name: "Users", to: "/admin/manageusers", icon: UsersIcon },
       { name: "Activity Logs", to: "/admin/activitylogs", icon: ClipboardDocumentListIcon },
-      { name: "Documents", to: "/documents", icon: DocumentTextIcon },
-      { name: "Schedules", to: "/schedules", icon: ClockIcon },
-      { name: "Notifications", to: "/notifications", icon: BellIcon },
-      { name: "Account", to: "/account", icon: Cog6ToothIcon },
+      { name: "Documents", to: "/admin/documents", icon: DocumentTextIcon },
+      { name: "Schedules", to: "/admin/schedules", icon: ClockIcon },
+      { name: "Notifications", to: "/admin/notifications", icon: BellIcon },
+      { name: "Account", to: "/admin/account", icon: Cog6ToothIcon },
       { name: "Logout", icon: ArrowRightOnRectangleIcon },
     ];
   } else if (role.value === "staff") {

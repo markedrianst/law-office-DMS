@@ -41,4 +41,13 @@ class User extends Authenticatable
 //     return $this->belongsTo(Role::class);
 // }
 
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class, 'lawyer_id');
+    }
+
+    public function createdSchedules()
+    {
+        return $this->hasMany(Schedule::class, 'created_by');
+    }
 }
