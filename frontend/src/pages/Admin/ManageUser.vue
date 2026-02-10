@@ -190,9 +190,27 @@ export default {
     async saveUser() {
       if (!this.validateForm()) return;
 
+      // Check if editing an admin
+      if (this.isEditing && this.form.role === 'admin') {
+        const originalUser = this.users.find(u => u.id === this.editId);
+
+        // If trying to change role
+        if (originalUser.role?.role !== 'admin' && this.form.role !== 'admin') {
+          Swal.fire("Warning", "You cannot demote an admin user.", "warning");
+          return;
+        }
+
+        // If trying to set inactive
+        if (this.form.status !== 'active') {
+          Swal.fire("Warning", "Admin users cannot be set to inactive.", "warning");
+          return;
+        }
+      }
+
       try {
         if (this.isEditing) await api.put(`/users/${this.editId}`, this.form);
         else await api.post("/addusers", this.form);
+
         Swal.fire("Success", "User saved successfully.", "success");
         this.closeModal();
         this.fetchUsers();
@@ -200,6 +218,7 @@ export default {
         Swal.fire("Error", e.response?.data?.message || "Failed to save user.", "error");
       }
     },
+
 
     confirmDelete(user) {
       Swal.fire({
