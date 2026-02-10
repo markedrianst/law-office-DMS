@@ -11,9 +11,12 @@ class User extends Authenticatable
     use HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'middle_name',
         'email',
         'password',
+        'status',
     ];
 
     protected $hidden = [
@@ -32,5 +35,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Role::class); // one role per user
     }
+
+//     public function role()
+// {
+//     return $this->belongsTo(Role::class);
+// }
 
 }

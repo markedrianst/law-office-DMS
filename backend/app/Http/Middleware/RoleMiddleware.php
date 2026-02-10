@@ -4,22 +4,26 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string  $role  // role to check, e.g. "admin"
+     * @return mixed
      */
-public function handle($request, Closure $next, ...$roles)
-{
-    if (!in_array($request->user()->role->role, $roles)) {
-        abort(403);
+    public function handle(Request $request, Closure $next, string $role)
+    {
+        $user = $request->user(); // same as auth()->user()
+
+        // If user has no role, or role does not match, abort
+        if (!$user || !$user->role || $user->role->role !== $role) {
+            abort(403, 'Unauthorized: Insufficient role');
+        }
+
+        return $next($request);
     }
-
-    return $next($request);
-}
-
 }

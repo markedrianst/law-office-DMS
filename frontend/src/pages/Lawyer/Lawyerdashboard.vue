@@ -61,10 +61,6 @@ export default {
       // Clear user info and token
       localStorage.removeItem("user");
       localStorage.removeItem("token");
-
-      // Remove default Authorization header
-      api.defaults.headers.common["Authorization"] = "";
-
       // Redirect to login page
       this.$router.push("/");
     },

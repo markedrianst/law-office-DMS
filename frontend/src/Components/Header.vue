@@ -40,6 +40,7 @@
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import Swal from "sweetalert2";
+import api from "@/services/api"; // make sure you import it
 import {
   Squares2X2Icon,
   UsersIcon,
@@ -65,8 +66,9 @@ const role = computed(() => user.value.role || "guest");
 const navItems = computed(() => {
   if (role.value === "admin") {
     return [
-      { name: "Dashboard", to: "/admindashboard", icon: Squares2X2Icon },
-      { name: "Users", to: "/users", icon: UsersIcon },
+      { name: "Dashboard", to: "/admin/admindashboard", icon: Squares2X2Icon },
+      { name: "Users", to: "/admin/manageusers", icon: UsersIcon },
+      { name: "Activity Logs", to: "/admin/activitylogs", icon: ClipboardDocumentListIcon },
       { name: "Documents", to: "/documents", icon: DocumentTextIcon },
       { name: "Schedules", to: "/schedules", icon: ClockIcon },
       { name: "Notifications", to: "/notifications", icon: BellIcon },
@@ -78,7 +80,6 @@ const navItems = computed(() => {
       { name: "Dashboard", to: "/staffdashboard", icon: Squares2X2Icon },
       { name: "Clients", to: "/clients", icon: UsersIcon },
       { name: "Documents", to: "/documents", icon: DocumentTextIcon },
-      { name: "Schedules", to: "/schedules", icon: ClockIcon },
       { name: "Notifications", to: "/notifications", icon: BellIcon },
       { name: "Settings", to: "/settings", icon: Cog6ToothIcon },
       { name: "Logout", icon: ArrowRightOnRectangleIcon },
@@ -101,9 +102,8 @@ const navItems = computed(() => {
     ];
   }
 });
-
-function logout() {
-  Swal.fire({
+async function logout() {
+  const result = await Swal.fire({
     title: "Are you sure?",
     text: "You will be logged out from the system.",
     icon: "warning",
@@ -112,16 +112,25 @@ function logout() {
     cancelButtonColor: "#d33",
     confirmButtonText: "Yes",
     cancelButtonText: "Cancel",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // Clear token and user
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      user.value = {}; // reactive update if using ref or reactive
-
-      // Redirect to login
-      router.push("/");
-    }
   });
+
+  if (!result.isConfirmed) return;
+
+  try {
+    await api.post("/logout");
+  } catch (e) {
+    console.error("Logout failed", e);
+  }
+
+  // Clear storage
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  user.value = {};
+
+  // Redirect
+  router.push("/");
 }
+
+
+
 </script>
