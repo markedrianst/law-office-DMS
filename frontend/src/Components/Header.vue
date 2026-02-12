@@ -88,9 +88,9 @@ const navItems = computed(() => {
     return [
       { name: "Dashboard", to: "/lawyerdashboard", icon: Squares2X2Icon },
       { name: "Cases", to: "/cases", icon: UsersIcon },
-      { name: "Documents", to: "/documents", icon: DocumentTextIcon },
+      { name: "Documents", to: "/lawyer/documents", icon: DocumentTextIcon },
       { name: "Schedules", to: "/schedules", icon: ClockIcon },
-      { name: "Notifications", to: "/notifications", icon: BellIcon },
+      { name: "Notifications", to: "/lawyer/notifications", icon: BellIcon },
       { name: "Account", to: "/account", icon: Cog6ToothIcon },
       { name: "Logout", icon: ArrowRightOnRectangleIcon },
     ];

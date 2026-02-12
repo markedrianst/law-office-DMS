@@ -127,29 +127,35 @@
               </td>
               <td class="p-3">
                 <div class="flex justify-end gap-2">
+                  <!-- View Button -->
                   <button
                     @click="viewSchedule(schedule)"
-                    class="text-blue-600 hover:text-blue-900"
-                    title="View"
+                    class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-100 text-blue-700 hover:bg-blue-200 hover:text-blue-900 transition"
+                    title="View Schedule"
                   >
                     <i class="fa fa-eye"></i>
                   </button>
+
+                  <!-- Edit Button -->
                   <button
                     @click="editSchedule(schedule)"
-                    class="text-green-600 hover:text-green-900"
-                    title="Edit"
+                    class="flex items-center justify-center w-10 h-10 rounded-lg bg-green-100 text-green-700 hover:bg-green-200 hover:text-green-900 transition"
+                    title="Edit Schedule"
                   >
                     <i class="fa fa-edit"></i>
                   </button>
+
+                  <!-- Delete Button -->
                   <button
                     @click="handleDelete(schedule.id)"
-                    class="text-red-600 hover:text-red-900"
-                    title="Delete"
+                    class="flex items-center justify-center w-10 h-10 rounded-lg bg-red-100 text-red-700 hover:bg-red-200 hover:text-red-900 transition"
+                    title="Delete Schedule"
                   >
                     <i class="fa fa-trash"></i>
                   </button>
                 </div>
               </td>
+
             </tr>
             <tr v-if="schedules.length === 0">
               <td colspan="8" class="p-3 text-center text-gray-400">No schedules found.</td>
@@ -699,19 +705,21 @@ export default {
       selectedSchedule.value = null;
       isEdit.value = false;
     };
+const formatDateTime = (dateTime) => {
+  if (!dateTime) return "";
 
-    const formatDateTime = (dateTime) => {
-      if (!dateTime) return "";
-      const d = new Date(dateTime);
-      return d.toLocaleString("en-US", { 
-        month: "2-digit", 
-        day: "2-digit", 
-        year: "numeric", 
-        hour: "2-digit", 
-        minute: "2-digit", 
-        hour12: true 
-      });
-    };
+  const d = new Date(dateTime);
+
+  return d.toLocaleString("en-PH", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true
+  });
+};
+
 
     const getStatusClass = (status) => {
       const classes = {

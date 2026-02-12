@@ -19,7 +19,6 @@ import Schedule from "@/pages/Admin/Schedule.vue";
 import Documents from "@/pages/Admin/Documents.vue";
 import Notification from "@/pages/Admin/Notification.vue";
 
-
 import NotFound from "@/Error/NotFound.vue";
 
 const routes = [
@@ -40,6 +39,9 @@ const routes = [
   { path: "/settings", component: Settings, meta: { requiresAuth: true, role: "staff" } },
   
   //lawyer routes
+  
+  { path: "/lawyer/documents", component: Documents, meta: { requiresAuth: true, role: "lawyer" } },
+  { path: "/lawyer/notifications", component: Notification, meta: { requiresAuth: true, role: "lawyer" } }, 
   { path: "/lawyerdashboard", component: LawyerDashboard, meta: { requiresAuth: true, role: "lawyer" } },
   { 
     path: "/:pathMatch(.*)*", 
@@ -78,5 +80,7 @@ router.beforeEach((to, from, next) => {
 
   next();
 });
+
+
 
 export default router;
