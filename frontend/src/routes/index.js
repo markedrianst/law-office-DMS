@@ -39,7 +39,8 @@ const routes = [
   { path: "/settings", component: Settings, meta: { requiresAuth: true, role: "staff" } },
   
   //lawyer routes
-  
+    { path: "/schedules", component: Schedule, meta: { requiresAuth: true, role: "lawyer" } },
+
   { path: "/lawyer/documents", component: Documents, meta: { requiresAuth: true, role: "lawyer" } },
   { path: "/lawyer/notifications", component: Notification, meta: { requiresAuth: true, role: "lawyer" } }, 
   { path: "/lawyerdashboard", component: LawyerDashboard, meta: { requiresAuth: true, role: "lawyer" } },

@@ -15,7 +15,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/schedules/{id}', [ScheduleController::class, 'show']);
     Route::put('/schedules/{id}', [ScheduleController::class, 'update']);
     Route::delete('/schedules/{id}', [ScheduleController::class, 'destroy']);
-    
+    Route::put('/schedules/{id}/status', [ScheduleController::class, 'updateStatus']);
     Route::get('/lawyers', [ScheduleController::class, 'lawyers']);
 
     // Admin dashboard schedules
